@@ -166,7 +166,7 @@ InvokeThunkPointer LLVMJIT::getInvokeThunk(FunctionType functionType)
 	// Return the new context pointer.
 	emitContext.irBuilder.CreateRet(
 		emitContext.irBuilder.CreateLoad(
-            LLVM_GET_TYPE(emitContext.contextPointerVariable),
+            LLVM_GET_PTR_ELEMENT_TYPE(emitContext.contextPointerVariable),
             emitContext.contextPointerVariable));
 
 	// Compile the LLVM IR to object code.

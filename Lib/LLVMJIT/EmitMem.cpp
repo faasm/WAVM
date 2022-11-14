@@ -843,7 +843,7 @@ EMIT_ATOMIC_STORE_OP(i64, atomic_store32, llvmContext.i32Type, 2, trunc)
 			= irBuilder.CreateAtomicCmpXchg(pointer,                                               \
 											expectedValue,                                         \
 											replacementValue,                                      \
-                                            llvm::MaybeAlign(U64(1 << numBytesLog2)),              \
+                                            llvm::MaybeAlign(),                                    \
 											llvm::AtomicOrdering::SequentiallyConsistent,          \
 											llvm::AtomicOrdering::SequentiallyConsistent);         \
 		atomicCmpXchg->setVolatile(true);                                                          \
@@ -878,7 +878,7 @@ EMIT_ATOMIC_CMPXCHG(i64, atomic_rmw_cmpxchg, llvmContext.i64Type, 3, identity, i
 		auto atomicRMW = irBuilder.CreateAtomicRMW(llvm::AtomicRMWInst::BinOp::rmwOpId,            \
 												   pointer,                                        \
 												   value,                                          \
-                                                   llvm::MaybeAlign(U64(1 << numBytesLog2)),       \
+                                                   llvm::MaybeAlign(),                             \
 												   llvm::AtomicOrdering::SequentiallyConsistent);  \
 		atomicRMW->setVolatile(true);                                                              \
 		push(memToValue(atomicRMW, asLLVMType(llvmContext, ValueType::valueTypeId)));              \
