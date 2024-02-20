@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 # Configure APT repositories
-ARG LLVM_VERSION_MAJOR=17
+ARG LLVM_VERSION_MAJOR=18
 RUN apt update \
     && apt upgrade -y \
     && apt install -y \
@@ -22,7 +22,8 @@ RUN apt update \
         build-essential \
         cmake \
         libtool \
-        llvm-17 \
+        libzstd-dev \
+        llvm-${LLVM_MAJOR_VERSION} \
         make \
         ninja-build \
         sudo \
@@ -38,7 +39,7 @@ COPY . /code
 # Create a build directory
 WORKDIR /build
 
-RUN cmake -G Ninja /code -DCMAKE_BUILD_TYPE=RelWithDebInfo
-RUN ninja
+# RUN cmake -G Ninja /code -DCMAKE_BUILD_TYPE=RelWithDebInfo
+# RUN ninja
 
 CMD /bin/bash
