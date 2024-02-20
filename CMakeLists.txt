@@ -105,7 +105,7 @@ endif()
 
 if(WAVM_ENABLE_RUNTIME)
     # Faasm: be specific about the LLVM version we use
-	set(LLVM_DIR "/usr/lib/llvm-13/cmake" CACHE STRING "" FORCE)
+	set(LLVM_DIR "/usr/lib/llvm-18/cmake" CACHE STRING "" FORCE)
 	find_package(LLVM REQUIRED CONFIG)
 	message("WAVM using LLVM: ${LLVM_VERSION_MAJOR}")
 
